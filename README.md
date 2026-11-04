@@ -49,12 +49,11 @@ Or test your with the command ==> `make test` ---
 1. **No library functions inside the seven functions.** That means no `strlen`, `strcpy`, `strcmp`, `strchr`, `strstr`, `strtok`, `tolower`, `isspace`, `printf`, or anything else from any library. The autograder checks this automatically, and a submission that calls any library function gets **zero** for the affected checks. (You *may* use `printf` inside `main` for testing; `main` is ignored by the autograder.) 
 2. **Write your own helper functions** if you want to (for example, your own function to compute a string's length). Helpers are encouraged, however do not give them the same name as their `string.h` versions. You should not create a function called `strlen` or `strcmp` use a custom name like my_strlen or something. 
 3. **Do not change the name, return type, or parameters** of any of the seven functions. The autograder calls them exactly as written. 
-4. **Keep `main` inside the `#ifndef AUTOGRADER` block** in the starter file. Don't delete the guard. 
-5. **Remove debug `printf` calls from the seven functions** before you submit. See rule 1. 
-6. All strings in this assignment contain only standard ASCII characters (values 0 to 127). 
-7. Unless a function's description says otherwise, **pointer arguments are never `NULL`**. You don't need to check for it. 
-8. Warnings count as errors therefore you code might not compile just because you have an unused variable. Keep an eye out for such things. 
-9. Match const when walking a string. If a parameter is `const char *s`, any pointer you use to walk through it must also be `const char *`. Otherwise you’ll get a warning, and rule [warnings] applies.
+4. **Remove debug `printf` calls from the seven functions** before you submit. See rule 1. 
+5. All strings in this assignment contain only standard ASCII characters (values 0 to 127). 
+6. Unless a function's description says otherwise, **pointer arguments are never `NULL`**. You don't need to check for it. 
+7. Warnings count as errors therefore you code might not compile just because you have an unused variable. Keep an eye out for such things. 
+8. Match const when walking a string. If a parameter is `const char *s`, any pointer you use to walk through it must also be `const char *`. Otherwise you’ll get a warning, and rule [warnings] applies.
 
 ### A common trap: string literals are read-only
 
@@ -355,7 +354,10 @@ No new memory is created: each `fields[i]` points **into** the original array.
 
 ## Suggested approach
 
-1. Start with `str_find_char` and `str_reverse` to get comfortable walking strings with pointers. You'll probably want a length helper for `str_reverse`; write your own. 2. For every function, **trace it by hand on paper** with the edge cases before running it. If you can't predict what your code will do, you don't understand it yet. 3. Test as you go. Don't write all seven and then compile. 4. Start `str_squeeze` and `str_split` early. They are worth the most points and take the most thought.
+1. Start with `str_find_char` and `str_reverse` to get comfortable walking strings with pointers. You'll probably want a length helper for `str_reverse`; write your own. 
+2. For every function, **trace it by hand on paper** with the edge cases before running it. If you can't predict what your code will do, you don't understand it yet. 
+3. Test as you go. Don't write all seven and then compile. 
+4. Start `str_squeeze` and `str_split` early. They are worth the most points and take the most thought.
 
 Good luck, and enjoy it. This is the week you stop *using* strings and start *understanding* them.
 

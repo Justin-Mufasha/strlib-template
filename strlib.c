@@ -86,10 +86,15 @@
  */
 const char *str_find_char(const char *s, char c)
 {
-    (void)s;   /* remove these (void) lines once you use the parameters */
-    (void)c;
-
-    /* TODO */
+     while (*s != '\0') {
+        if (*s == c) {
+            return s;
+        }
+        s++;
+    }
+    if (c == '\0') {
+        return s;
+    }
     return NULL;
 }
 

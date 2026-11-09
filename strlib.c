@@ -86,10 +86,15 @@
  */
 const char *str_find_char(const char *s, char c)
 {
-    (void)s;   /* remove these (void) lines once you use the parameters */
-    (void)c;
-
-    /* TODO */
+     while (*s != '\0') {
+        if (*s == c) {
+            return s;
+        }
+        s++;
+    }
+    if (c == '\0') {
+        return s;
+    }
     return NULL;
 }
 
@@ -117,9 +122,25 @@ const char *str_find_char(const char *s, char c)
  */
 void str_reverse(char *s)
 {
-    (void)s;
+      if (*s == '\0') {
+        return;
+    }
 
-    /* TODO */
+    char *start = s;
+    char *end = s;
+
+    while (*end != '\0') {
+        end++;
+    }
+    end--;
+
+    while (start < end) {
+        char temp = *start;
+        *start = *end;
+        *end = temp;
+        start++;
+        end--;
+    }
 }
 
 

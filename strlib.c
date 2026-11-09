@@ -287,10 +287,27 @@ size_t str_copy_bounded(char *dst, const char *src, size_t size)
  */
 const char *str_find_sub(const char *hay, const char *needle)
 {
-    (void)hay;
-    (void)needle;
+        if (*needle == '\0') {
+        return hay;
+    }
 
-    /* TODO */
+    const char *h;
+    const char *n;
+
+    for (h = hay; *h != '\0'; h++) {
+        n = needle;
+        const char *h_start = h;
+
+        while (*h_start != '\0' && *n != '\0' && *h_start == *n) {
+            h_start++;
+            n++;
+        }
+
+        if (*n == '\0') {
+            return h;
+        }
+    }
+
     return NULL;
 }
 
@@ -322,10 +339,35 @@ const char *str_find_sub(const char *hay, const char *needle)
  */
 size_t str_squeeze(char *s)
 {
-    (void)s;
+     char *read = s;
+    char *write = s;
 
-    /* TODO */
-    return 0;
+    while (*read == ' ' || *read == '\t') {
+        read++;
+    }
+
+    while (*read != '\0') {
+        if (*read == ' ' || *read == '\t') {
+            *write = ' ';
+            write++;
+            
+            while (*read == ' ' || *read == '\t') {
+                read++;
+            }
+        } else {
+            *write = *read;
+            write++;
+            read++;
+        }
+    }
+
+    if (write > s && *(write - 1) == ' ') {
+        write--;
+    }
+
+    *write = '\0';
+
+    return (size_t)(write - s);
 }
 
 
@@ -360,13 +402,31 @@ size_t str_squeeze(char *s)
  */
 int str_split(char *s, char delim, char *fields[], int max_fields)
 {
-    (void)s;
-    (void)delim;
-    (void)fields;
-    (void)max_fields;
+    int count = 0;
+    char *start = s;
+    char *p = s;
 
-    /* TODO */
-    return 0;
+    while (1) {
+        if (*p == delim || *p == '\0') {
+            char is_end = (*p == '\0');
+
+            *p = '\0';
+
+            if (count < max_fields) {
+                fields[count] = start;
+            }
+            count++;
+
+            if (is_end) {
+                break;
+            }
+
+            start = p + 1;
+        }
+        p++;
+    }
+
+    return count;
 }
 
 

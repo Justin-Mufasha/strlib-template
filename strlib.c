@@ -170,11 +170,34 @@ void str_reverse(char *s)
  */
 int str_compare_ci(const char *a, const char *b)
 {
-    (void)a;
-    (void)b;
+      while (*a != '\0' && *b != '\0') {
+        char char_a = *a;
+        char char_b = *b;
 
-    /* TODO */
-    return 0;
+        if (char_a >= 'A' && char_a <= 'Z') {
+            char_a = char_a + 32;
+        }
+        if (char_b >= 'A' && char_b <= 'Z') {
+            char_b = char_b + 32;
+        }
+
+        if (char_a < char_b) {
+            return -1;
+        } else if (char_a > char_b) {
+            return 1;
+        }
+
+        a++;
+        b++;
+    }
+
+    if (*a == '\0' && *b == '\0') {
+        return 0;
+    } else if (*a == '\0') {
+        return -1;
+    } else {
+        return 1;
+    }
 }
 
 
@@ -208,12 +231,32 @@ int str_compare_ci(const char *a, const char *b)
  */
 size_t str_copy_bounded(char *dst, const char *src, size_t size)
 {
-    (void)dst;
-    (void)src;
-    (void)size;
+      const char *s = src;
+    size_t src_len = 0;
 
-    /* TODO */
-    return 0;
+    /* First, find the length of src */
+    while (*s != '\0') {
+        src_len++;
+        s++;
+    }
+
+    /* If size is 0, we can't write anything. Just return the length. */
+    if (size == 0) {
+        return src_len;
+    }
+
+    /* Copy up to size - 1 characters */
+    size_t i = 0;
+    while (i < size - 1 && src[i] != '\0') {
+        dst[i] = src[i];
+        i++;
+    }
+
+    /* Null-terminate */
+    dst[i] = '\0';
+
+    /* Return the full length of src (not how many we copied) */
+    return src_len;
 }
 
 
